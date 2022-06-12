@@ -8,8 +8,12 @@ class App{
         this.express = express();
         //destructure
         const {databaseUri, dbName} = this.options
-            this.express.use(userRouter)
-        this.database = getDatabaseController(databaseUri, {dbName : dbName})
+        if(options.mountPath){
+            this.express.use(options.mountPath, userRouter);
+        }else{
+            this.express.use(userRouter);
+        }
+        this.database = getDatabaseController(databaseUri, {dbName : dbName});
     }
     startHttpServer(){
         this.httpServer = new HttpServer(this.options.port, this.express);

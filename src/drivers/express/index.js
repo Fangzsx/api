@@ -5,7 +5,7 @@ const options = {
     collection : 'testCollection',
     databaseUri: 'mongodb://localhost:27017',
     dbName : 'testdb',
-
+    mountPath : '/v1/'
 }
 
 new App(options)
