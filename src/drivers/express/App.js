@@ -1,5 +1,6 @@
 const HttpServer = require('../http/HttpServer');
 const getDatabaseController = require('../../controllers/index')
+const userRouter = require('../../drivers/routers/UserRouter')
 const express = require('express');
 class App{
     constructor(options) {
@@ -7,7 +8,7 @@ class App{
         this.express = express();
         //destructure
         const {databaseUri, dbName} = this.options
-
+            this.express.use(userRouter)
         this.database = getDatabaseController(databaseUri, {dbName : dbName})
     }
     startHttpServer(){
